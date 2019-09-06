@@ -14,6 +14,7 @@ BEGIN { OFS="," }
         getline;getline;        
         date=$2
         time=$4
-        print date,time,invoice,"KHVN","Robinson",inv,nnumber,gallons,rate,total
+        actualrate=total/gallons
+        print date,time,invoice,"KHVN","Robinson",inv,nnumber,gallons,rate,actualrate,total
     }
 }
