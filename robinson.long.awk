@@ -15,6 +15,8 @@ BEGIN { OFS="," }
         nnumber=$3
         gallons=$4
     }
+    time=""
     rate=total/gallons
-    print date,time,invoice,"KHVN","Robinson",inv,nnumber,gallons,rate,total
+    actualrate=rate
+    print date,time,invoice,"KHVN","Robinson",nnumber,gallons,rate,actualrate,total
 }
