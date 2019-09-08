@@ -15,5 +15,5 @@ BEGIN { OFS="," }
     rate=$7
     total=$8
     actualrate=total/gallons
-    print date,time,invoice,"KPOU","FlightLevel",invoice,nnumber,gallons,rate,actualrate,total
+    print date,time,invoice,"KPOU","FlightLevel",nnumber,gallons,rate,actualrate,total
 }
