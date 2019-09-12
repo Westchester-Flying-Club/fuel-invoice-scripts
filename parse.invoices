@@ -1,0 +1,17 @@
+#!/bin/bash -e
+
+if [ $# -lt 1 ] || [ $# -gt 1 ]; then
+  echo "usage: $0 <dir>"
+  exit 1
+fi
+
+FDIR="$1"
+
+for f in $FDIR/*.pdf
+    do
+        if [ $(pdftotext -layout $f -|grep -c 'FlightLevel') -ne 0 ]; then
+             pdftotext -layout $f -|awk -f flightlevel.short.awk       
+        elif [ $(pdftotext -layout $f -|grep -c 'Robinson') -ne 0 ]; then
+             pdftotext -layout $f -|awk -f robinson.short.awk
+        fi
+done
