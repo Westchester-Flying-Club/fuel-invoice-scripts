@@ -1,5 +1,8 @@
 BEGIN { OFS="," }
 
+## for abs
+@include "iif.lib.awk"
+
 /Invoice/ {
     invoice=$2
     date=$3
@@ -11,9 +14,12 @@ BEGIN { OFS="," }
 
 /1.*Fuel.*100LL/ {
     nnumber=$4
-    gallons=$5
-    rate=$7
+    quantity=$5
+    price=$7
     total=$8
-    actualrate=total/gallons
-    print date,time,invoice,"KPOU","FlightLevel",nnumber,gallons,rate,actualrate,total
+    if(abs(total - (price * quantity)) >= .005) {
+        print "ERROR, total does not match price * quantity"
+    } else {
+        print date,time,invoice,"KPOU","FlightLevel",nnumber,quantity,price,total
+    }
 }
