@@ -1,3 +1,7 @@
+function abs(x){
+    return ((x < 0.0) ? -x : x)
+}
+
 function bill_header()
 {
     OFS="\t"
