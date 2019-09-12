@@ -1,7 +1,7 @@
 function bill_header()
 {
     OFS="\t"
-    print "!TRNS","TRNSTYPE","DATE","ACCNT","NAME","AMOUNT","MEMO"
+    print "!TRNS","TRNSTYPE","DATE","ACCNT","NAME","AMOUNT","DOCNUM","MEMO"
     print "!SPL","TRNSTYPE","DATE","ACCNT",accou"AMOUNT","QNTY","PRICE","INVITEM"
     print "!ENDTRNS"
 }
@@ -13,7 +13,7 @@ function bill(date,time,vendor,invoice,tail,quantity,price) {
     item="Fuel:Fuel " tail
     memo="Invoice: " invoice ", " date" "time
 
-    print "TRNS","BILL",date,"Accounts Payable",vendor,-amount,memo
+    print "TRNS","BILL",date,"Accounts Payable",vendor,-amount,invoice,memo
     print "SPL","BILL",date,account,amount,quantity,price,item
     print "ENDTRNS"
 }
