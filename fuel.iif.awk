@@ -8,9 +8,7 @@
     airport=$4
     vendor=$5
     tail=$6
-    gallons=$7
-    rate=$9
-    account="Fuel:Fuel "  tail
-    memo="Invoice: " invoice ", " date" "time
-    bill(date,vendor,gallons * rate,account,memo)
+    quantity=$7 ## gallons
+    price=$9 ## need to round to 5 places
+    bill(date,time,vendor,invoice,tail,quantity,price)
 }
