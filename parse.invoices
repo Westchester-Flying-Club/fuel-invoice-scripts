@@ -7,12 +7,6 @@ fi
 
 FDIR="$1"
 
-# unzip files from Robinson (which have images in the attachment list)
-for f in $FDIR/*.zip;
-do
-    unzip -qo "$f"
-done
-
 ## convert short files
 for f in $FDIR/*.pdf
 do
