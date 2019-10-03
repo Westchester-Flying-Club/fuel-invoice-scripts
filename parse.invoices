@@ -10,19 +10,19 @@ FDIR="$1"
 # unzip files from Robinson (which have images in the attachment list)
 for f in $FDIR/*.zip;
 do
-    unzip -o "$f"
+    unzip -qo "$f"
 done
 
 ## convert short files
 for f in $FDIR/*.pdf
 do
-
+    ##echo $f
     ## check Flightlevel, Robinson, or Ross
     if [ $(pdftotext -layout $f -|grep -c 'FlightLevel') -ne 0 ]; then
         pdftotext -layout $f -|awk -f flightlevel.short.awk
     elif [ $(pdftotext -layout $f -|grep -c 'Robinson') -ne 0 ]; then
         pdftotext -layout $f -|awk -f robinson.short.awk
-    elif [ $(pdftotext -layout $f -|grep -c 'Ross') -ne 0 ]; then
-        pdftotext -layout $f -|awk -f ross.awk
+    elif [ $(pdftotext -layout $f -|grep -c 'Ross Aviation - White Plains') -ne 0 ]; then
+        pdftotext -layout $f -|awk -f ross.short.awk
     fi
 done
