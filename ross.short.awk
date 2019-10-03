@@ -19,6 +19,10 @@ BEGIN { OFS="," }
     time=$4
     getline;
     if($1!="Subtotal") {
+        gsub(/^[ \t]+/, "", $0)
+        gsub(/[ \t]+$/,"",$0)
+        gsub(/Fuel requested by /,"",$0)
+        gsub(/ - Pilot/,"",$0)
         notes=$0
     }
 }
