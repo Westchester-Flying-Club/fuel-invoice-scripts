@@ -8,7 +8,7 @@ BEGIN { OFS="," }
     invoice=$8
 }
 
-/1.*Fuel.*AVGAS/ {
+/[1-9].*Fuel.*AVGAS/ {
     if(NF==8) {
         nnumber=$4
         quantity=$5
