@@ -7,8 +7,7 @@ BEGIN { OFS="," }
         nnumber=$8
         gallons=$9
         total=$12
-        rate=total/gallons
-        actualrate=rate
-        print date,"","KPOU","FlightLevel",invoice,nnumber,gallons,rate,actualrate,total
+        actualrate=total/gallons
+        print date,"","KPOU","FlightLevel",invoice,nnumber,gallons,actualrate,total
     }
 }
