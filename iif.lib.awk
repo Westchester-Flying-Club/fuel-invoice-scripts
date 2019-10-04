@@ -10,12 +10,16 @@ function bill_header()
     print "!ENDTRNS"
 }
 
-function bill(date,time,vendor,invoice,tail,quantity,price) {
+function bill(date,time,vendor,invoice,tail,quantity,price,pilot) {
     OFS="\t"
     amount=quantity * price ## needs to be rounded to 2 places
     account="Aircraft Variable Costs:Fuel:Fuel " tail
     item="Fuel:Fuel " tail
-    memo="Invoice: " invoice ", " date" "time
+    if(pilot!="") {
+        memo=date" "time", "pilot
+    } else {
+        memo=date" "time
+    }
 
     print "TRNS","BILL",date,"Accounts Payable",vendor,-amount,invoice,memo
     print "SPL","BILL",date,account,amount,quantity,price,item
