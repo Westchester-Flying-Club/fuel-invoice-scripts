@@ -1,4 +1,4 @@
-BEGIN { OFS="," }
+BEGIN { OFS="\t" }
 
 /VISA\/MASTERCARD/ {
     if(NF==12) {
@@ -8,6 +8,6 @@ BEGIN { OFS="," }
         gallons=$9
         total=$12
         actualrate=total/gallons
-        print date,"","KPOU","FlightLevel",invoice,nnumber,gallons,actualrate,total
+        print date,"","KPOU","Flight Level",invoice,nnumber,gallons,actualrate,total
     }
 }

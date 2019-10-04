@@ -1,4 +1,4 @@
-BEGIN { OFS="," }
+BEGIN { OFS="\t" }
 
 /100LL\*Avgas/ {
     date=$1
@@ -12,5 +12,5 @@ BEGIN { OFS="," }
     getline;
     total=$NF
     actualrate=total/quantity
-    print date,time,"KHPN","Ross",invoice,nnumber,quantity,actualrate,total
+    print date,time,"KHPN","Ross Aviation",invoice,nnumber,quantity,actualrate,total
 }

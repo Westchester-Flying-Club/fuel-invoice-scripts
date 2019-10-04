@@ -1,7 +1,4 @@
-BEGIN { OFS="," }
-
-## for abs
-@include "iif.lib.awk"
+BEGIN { OFS="\t" }
 
 /Invoice/ {
     invoice=$2
@@ -38,7 +35,7 @@ BEGIN { OFS="," }
 /Total Due/ {
     total=$3
     price=total/quantity
-    print date,time,invoice,"KHPN","Ross",nnumber,quantity,price,total,notes
+    print date,time,invoice,"KHPN","Ross Aviation",nnumber,quantity,price,total,notes
 }
 
 

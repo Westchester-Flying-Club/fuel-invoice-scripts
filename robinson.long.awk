@@ -1,5 +1,3 @@
-BEGIN { OFS="," }
-
 /Payment, Fuel/ {
     invoice=$1
     date=$3
@@ -18,5 +16,5 @@ BEGIN { OFS="," }
     time=""
     rate=total/gallons
     actualrate=rate
-    print date,time,invoice,"KHVN","Robinson",nnumber,gallons,rate,actualrate,total
+    print date,time,invoice,"KHVN","Robinson Aviation, Inc.",nnumber,gallons,rate,actualrate,total
 }

@@ -1,5 +1,10 @@
 @include "iif.lib.awk"
-BEGIN { bill_header() }
+
+BEGIN {
+    FS="\t"
+    bill_header()
+}
+
 {
     date=$1
     time=$2

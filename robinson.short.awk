@@ -1,8 +1,7 @@
-BEGIN { OFS="," }
-
 ## for abs
 @include "iif.lib.awk"
 
+BEGIN { OFS="\t" }
 
 /Invoice/ {
     invoice=$8
@@ -28,6 +27,6 @@ BEGIN { OFS="," }
     if(abs(total - (price * quantity)) >= .005) {
         print "ERROR, total does not match price * quantity"
     } else {
-        print date,time,invoice,"KHVN","Robinson",nnumber,quantity,price,total
+        print date,time,invoice,"KHVN","Robinson Aviation, Inc.",nnumber,quantity,price,total
     }
 }
