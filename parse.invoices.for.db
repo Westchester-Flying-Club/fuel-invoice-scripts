@@ -13,10 +13,10 @@ do
     ##echo $f
     ## check Flightlevel, Robinson, or Ross
     if [ $(pdftotext -layout $f -|grep -c 'FlightLevel') -ne 0 ]; then
-        pdftotext -layout $f -|awk -f flightlevel.short.awk
+        pdftotext -layout $f -|awk -f flightlevel.short.db.output.awk
     elif [ $(pdftotext -layout $f -|grep -c 'Robinson') -ne 0 ]; then
-        pdftotext -layout $f -|awk -f robinson.short.awk
+        pdftotext -layout $f -|awk -f robinson.short.db.output.awk
     elif [ $(pdftotext -layout $f -|grep -c 'Ross Aviation - White Plains') -ne 0 ]; then
-        pdftotext -layout $f -|awk -f ross.short.awk
+        pdftotext -layout $f -|awk -f ross.short.db.output.awk
     fi
 done
