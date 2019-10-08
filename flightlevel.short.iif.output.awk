@@ -8,7 +8,7 @@ BEGIN {
 
 /Invoice/ {
     invoice=$2
-    date=$3
+    invoice_date=$3
     getline;
     gsub(/\./,":",$1)
     time=$1
