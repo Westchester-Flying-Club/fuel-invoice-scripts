@@ -41,7 +41,7 @@ BEGIN {
 /Total Due/ {
     invoice_total=$3
     items[i]["price"] = invoice_total/quantity
-    bill_from_array(invoice_date,"Robinson Aviation, Inc.",invoice,invoice_total,notes,items)
+    bill_from_array(invoice_date,"Ross Aviation",invoice,invoice_total,notes,items)
 }
 
 
