@@ -8,9 +8,9 @@ BEGIN {
 {
     date=$1
     time=$2
-    invoice=$3
-    airport=$4
-    vendor=$5
+    airport=$3
+    vendor=$4
+    invoice=$5
     tail=$6
     quantity=$7 ## gallons
     price=$8 ## need to round to 5 places
