@@ -1,4 +1,4 @@
-BEGIN { OFS="," }
+BEGIN { OFS="\t" }
 
 /AVGAS.*Gallon/ {
     date=$1
