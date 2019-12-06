@@ -1,6 +1,6 @@
 {
-    quantity += $(NF-2)
-    dollars += $NF
+    quantity += $7
+    dollars += $9
 }
 
 END {
