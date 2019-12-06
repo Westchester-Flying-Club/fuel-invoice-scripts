@@ -27,6 +27,6 @@ BEGIN { OFS="\t" }
     if(abs(total - (price * quantity)) >= .005) {
         print "ERROR, total does not match price * quantity"
     } else {
-        print date,time,invoice,"KHVN","Robinson Aviation, Inc.",nnumber,quantity,price,total
+        print date,time,invoice,"KHVN","Robinson Aviation, Inc.",nnumber,quantity,price,total,RPTNAME
     }
 }

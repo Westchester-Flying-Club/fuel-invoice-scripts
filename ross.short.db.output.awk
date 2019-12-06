@@ -35,7 +35,7 @@ BEGIN { OFS="\t" }
 /Total Due/ {
     total=$3
     price=total/quantity
-    print date,time,invoice,"KHPN","Ross Aviation",nnumber,quantity,price,total,notes
+    print date,time,invoice,"KHPN","Ross Aviation",nnumber,quantity,price,total,notes,RPTNAME
 }
 
 
