@@ -16,5 +16,5 @@ BEGIN { OFS="\t" }
 	ampm=$5
 	activity=$6
 	fee=$7
-	print airport,date,time,ampm,tail,activity;
+	print airport,date,time,ampm,tail,activity,fee;
 }
