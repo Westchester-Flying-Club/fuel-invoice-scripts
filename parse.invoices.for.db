@@ -11,12 +11,15 @@ FDIR="$1"
 for f in $FDIR/*.pdf
 do
     ##echo $f
-    ## check Flightlevel, Robinson, or Ross
+    FNAME=$(basename $f)
+    ## check Flightlevel, Robinson, Ross or Danbury
     if [ $(pdftotext -layout $f -|grep -c 'FlightLevel') -ne 0 ]; then
-        pdftotext -layout $f -|awk -f flightlevel.short.db.output.awk
+        pdftotext -layout $f -|awk -v RPTNAME="$FNAME" -f flightlevel.short.db.output.awk
     elif [ $(pdftotext -layout $f -|grep -c 'Robinson') -ne 0 ]; then
-        pdftotext -layout $f -|awk -f robinson.short.db.output.awk
+        pdftotext -layout $f -|awk -v RPTNAME="$FNAME" -f robinson.short.db.output.awk
     elif [ $(pdftotext -layout $f -|grep -c 'Ross Aviation - White Plains') -ne 0 ]; then
-        pdftotext -layout $f -|awk -f ross.short.db.output.awk
+        pdftotext -layout $f -|awk -v RPTNAME="$FNAME" -f ross.short.db.output.awk
+    elif [ $(pdftotext -layout $f -|grep -c 'Business Aircraft Center') -ne 0 ]; then
+        pdftotext -layout $f -|awk -v RPTNAME="$FNAME" -f danbury.short.db.output.awk
     fi
 done
