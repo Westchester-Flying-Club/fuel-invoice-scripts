@@ -12,14 +12,16 @@ BEGIN { OFS="\t" }
 }
 
 
-/1.*Fuel.*100LL/ {
+/[1-9].*Fuel.*100LL/ {
+    invoice_line=$1
     nnumber=$4
     quantity=$5
     price=$7
     total=$8
+    notes=""
     if(abs(total - (price * quantity)) >= .005) {
         print "ERROR, total does not match price * quantity"
     } else {
-        print date,time,invoice,"KPOU","Flight Level",nnumber,quantity,price,total,RPTNAME
+        print date,time,invoice,invoice_line,"KPOU","Flight Level",nnumber,quantity,price,total,notes,RPTNAME
     }
 }

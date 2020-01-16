@@ -5,7 +5,8 @@ BEGIN { OFS="\t" }
 }
 
 
-/1.*Fuel.*100LL.*West/ {
+/[1-9].*Fuel.*100LL.*West/ {
+    invoice_line=$1
     nnumber=$6
     quantity=$7
     price=$11
@@ -35,7 +36,7 @@ BEGIN { OFS="\t" }
 /Total Due/ {
     total=$3
     price=total/quantity
-    print date,time,invoice,"KHPN","Ross Aviation",nnumber,quantity,price,total,notes,RPTNAME
+    print date,time,invoice,invoice_line,"KHPN","Ross Aviation",nnumber,quantity,price,total,notes,RPTNAME
 }
 
 

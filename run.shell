@@ -1,0 +1,3 @@
+#!/bin/bash
+
+psql wfcinfo wfc -At -F $'\t' -c "select * from wfc.shell_summary_vw where transaction_date >= '2019-12-01'"|awk -F"\t" -f shell.fuel.iif.awk

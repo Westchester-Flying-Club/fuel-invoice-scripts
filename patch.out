@@ -1,0 +1,92 @@
+diff --git a/flightlevel.long.awk b/flightlevel.long.awk
+index 419b238..cbd29f1 100644
+--- a/flightlevel.long.awk
++++ b/flightlevel.long.awk
+@@ -8,6 +8,6 @@ BEGIN { OFS="\t" }
+         gallons=$9
+         total=$12
+         actualrate=total/gallons
+-        print date,"","KPOU","Flight Level",invoice,nnumber,gallons,actualrate,total
++        print date,"KPOU","Flight Level",invoice,nnumber,gallons,actualrate,total
+     }
+ }
+diff --git a/flightlevel.short.db.output.awk b/flightlevel.short.db.output.awk
+index 3ee7b67..b8b38b3 100644
+--- a/flightlevel.short.db.output.awk
++++ b/flightlevel.short.db.output.awk
+@@ -17,9 +17,10 @@ BEGIN { OFS="\t" }
+     quantity=$5
+     price=$7
+     total=$8
++    notes=""
+     if(abs(total - (price * quantity)) >= .005) {
+         print "ERROR, total does not match price * quantity"
+     } else {
+-        print date,time,invoice,"KPOU","Flight Level",nnumber,quantity,price,total
++        print date,time,invoice,"KPOU","Flight Level",nnumber,quantity,price,total,notes
+     }
+ }
+diff --git a/parse.invoices.for.db b/parse.invoices.for.db
+index 97b694c..5b723d4 100755
+--- a/parse.invoices.for.db
++++ b/parse.invoices.for.db
+@@ -10,7 +10,7 @@ FDIR="$1"
+ ## convert short files
+ for f in $FDIR/*.pdf
+ do
+-    ##echo $f
++##	echo $f
+     ## check Flightlevel, Robinson, or Ross
+     if [ $(pdftotext -layout $f -|grep -c 'FlightLevel') -ne 0 ]; then
+         pdftotext -layout $f -|awk -f flightlevel.short.db.output.awk
+diff --git a/robinson.long2.awk b/robinson.long2.awk
+index 432fddc..f936ec2 100644
+--- a/robinson.long2.awk
++++ b/robinson.long2.awk
+@@ -13,6 +13,5 @@ BEGIN { OFS="\t" }
+         price=$8
+         total=$9
+     }
+-    time=""
+-    print date,time,invoice,"KHVN","Robinson",nnumber,quantity,price,total
++    print date,"KHVN","Robinson",invoice,nnumber,quantity,price,total
+ }
+diff --git a/robinson.short.db.output.awk b/robinson.short.db.output.awk
+index f587787..f7fff69 100644
+--- a/robinson.short.db.output.awk
++++ b/robinson.short.db.output.awk
+@@ -23,10 +23,10 @@ BEGIN { OFS="\t" }
+     getline;getline;
+     date=$2
+     time=$4
+-
++    notes=""
+     if(abs(total - (price * quantity)) >= .005) {
+         print "ERROR, total does not match price * quantity"
+     } else {
+-        print date,time,invoice,"KHVN","Robinson Aviation, Inc.",nnumber,quantity,price,total
++        print date,time,invoice,"KHVN","Robinson Aviation, Inc.",nnumber,quantity,price,total,notes
+     }
+ }
+diff --git a/ross.long.awk b/ross.long.awk
+index 0239ae0..20843be 100644
+--- a/ross.long.awk
++++ b/ross.long.awk
+@@ -14,5 +14,5 @@ BEGIN { OFS="\t" }
+     pretax_total=$(10+offset)
+     total=pretax_total *  (1+4.375/100)
+     actualrate=total/quantity
+-    print date,time,"KHPN","Ross Aviation",invoice,nnumber,quantity,actualrate,total
++    print date,"KHPN","Ross Aviation",invoice,nnumber,quantity,actualrate,total
+ }
+diff --git a/vector.invoice.awk b/vector.invoice.awk
+index 8de98d3..a179a99 100644
+--- a/vector.invoice.awk
++++ b/vector.invoice.awk
+@@ -16,5 +16,5 @@ BEGIN { OFS="\t" }
+ 	ampm=$5
+ 	activity=$6
+ 	fee=$7
+-	print airport,date,time,ampm,tail,activity;
++	print airport,date,time,ampm,tail,activity,fee;
+ }
