@@ -6,7 +6,7 @@ function bill_header()
 {
     OFS="\t"
     print "!TRNS","TRNSTYPE","DATE","ACCNT","NAME","AMOUNT","DOCNUM","MEMO"
-    print "!SPL","TRNSTYPE","DATE","ACCNT","AMOUNT","QNTY","PRICE","INVITEM","CLASS","DESC"
+    print "!SPL","TRNSTYPE","DATE","AMOUNT","QNTY","PRICE","INVITEM","CLASS","MEMO"
     print "!ENDTRNS"
 }
 

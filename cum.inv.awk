@@ -1,8 +1,8 @@
 @include "iif.lib.awk"
 
-function iif_split(date, account, amount, quantity, price, item, class, desc) {
+function iif_split(date, amount, quantity, price, item, class, memo) {
 
-	print "SPL","CREDIT CARD",date,account,amount,quantity,price,item,class,desc
+	print "SPL","CREDIT CARD",date,amount,quantity,price,item,class,memo
 }	
 
 BEGIN { 
@@ -37,29 +37,28 @@ BEGIN {
 		memo = "Fuel / " nnumber " / " location
 		## initial record
 		print "TRNS","CREDIT CARD",date,card_account,vendor,-total_amount,invoice,memo
-
-		## splits
-		##SPL CREDIT CARD 2020-01-02 Aircraft Variable Costs:Fuel:Fuel N4508X 144.84 28.4 5.1 Fuel:Fuel N4508X PA28:N4508X
-		account = "Aircraft Variable Costs:Fuel:Fuel " nnumber
-		amount = $16
-		quantity = $12
-		price = $14 
+	}
+	## splits
+	desc = $11
+	## account and itme change if this is a Fee due to a member
+	if (desc  ~ /Fee|FEE|non fuel/) {
+		class = "Member Fees"
+		item = "Misc. Expense:Ramp Fees"
+	} else {
 		class = tail2type(nnumber) ":" nnumber
 		item = "Fuel:Fuel " nnumber
-		desc = $11
-
-		iif_split(date, account, amount, quantity, price, item, class,desc)
-	} else {
-		amount = $16
-		desc = $11
-		if ($12 == "") {
-			quantity = 1
-		} else {
-			quantity = $12
-		}
-		price = $14 
-		iif_split(date, account, amount, quantity, price, item, class,desc)
 	}
+	amount = $16
+	quantity = $12
+	price = $14 
+
+	if ($12 == "") {
+		quantity = 1
+	} else {
+		quantity = $12
+	}
+	price = $14 
+	iif_split(date, amount, quantity, price, item, class,desc)
 }
 
 END {
