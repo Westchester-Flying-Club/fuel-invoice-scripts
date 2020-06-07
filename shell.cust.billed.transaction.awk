@@ -10,6 +10,7 @@ BEGIN {
 	current_inv="";
 	bill_header();
 } 
+
 /^"5994"/ {
 	for(i=1;i<=NF;i++) {
 		## remove double quotes
@@ -50,13 +51,6 @@ BEGIN {
 	}
 	amount = $16
 	quantity = $12
-	price = $14 
-
-	if ($12 == "") {
-		quantity = 1
-	} else {
-		quantity = $12
-	}
 	price = $14 
 	iif_split(date, amount, quantity, price, item, class,desc)
 }
